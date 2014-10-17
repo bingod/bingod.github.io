@@ -3,7 +3,7 @@
                 var total_q=$("ul li").index()+1;//总数据
                 var current_page=5;//每页显示的数据
                 var current_num=1;//当前页数
-                var total_page= Math.round(total_q/current_page);//总页数  
+                var total_page= Math.round(total_q/current_page)+1;//总页数  
                 var next=$(".next");//下一页
                 var prev=$(".prev");//上一页
                 $(".total").text(total_page);//显示总页数
