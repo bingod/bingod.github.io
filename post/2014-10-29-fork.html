@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>Bingod</title>
+<link rel="shortcut icon" href="/static/img/favicon.ico"/>
+<link rel="stylesheet" href="/static/style/style.css" type="text/css">
+<script src="/static/js/run_prettify.js"></script>
+</head>
+<body>
+<div id="content">
+<header id="header_index">
+<hgroup>
+<h2 class="site-nav"><a href="/">首页</a></h2>
+<h2 class="site-nav"><a href="/hobby">爱好</a></h2>
+<h2 class="site-nav"><a href="/about">About</a></h2>
+</hgroup>
+</header>
+<div id="main">
+<div class="article_wrapper">
+<article>
+<div class="entry-header">
+<h1 class="entry-title">fork函数引起的思考</h1>
+<div class="entry-meta">
+<span class="sep"><time>2014-10-29 20:39:51 +080</time></a></span>
+</div>
+</div>
+<div class="entry-content">
+<h2>fork函数：</h2>
+<p>一个进程调用fork（）函数后，系统先给新的进程分配资源，例如存储数据和代码的空间。然后把原来的进程的所有值都，复制到新的新进程中，只有少数值与原来的进程的值不同。相当于克隆了一个自己.fork函数返回两个值，返回子进程的pid,返回子进程的子进程pid,也就是0；
+<!-- more --></p>
+<p>例子1；</p>
+<pre class="prettyprint">
+
+  1 #include "stdio.h"
+  2 #include "unistd.h"
+  3 int main(){
+  4     pid_t spid;
+  5     spid=fork();
+  6     if(spid==0){
+  7         printf("This is child process ,pid:%d,spid:%d\n",getpid(),spid);
+  8     }
+  9     if(spid>0){
+ 10         printf("This is parent process,pid:%d,spid:%d\n",getpid(),spid);
+ 11     }
+ 12 
+ 13 }
+
+</pre>
+
+<p>结果输出：</p>
+<p>This is parent process,pid:23347,spid:23348</p>
+<p>This is child process ,pid:23348,spid:0</p>
+<p>结合程序分析：对于P23347的进程，返回它的子进程的pid;
+             对于P23348进程，返回0；</p>
+<p>下面我们看更高级一些的例子；</p>
+<p>例子2：</p>
+<pre class="prettyprint">
+
+  1 #include"stdio.h"
+  2 #include "sys/types.h"
+  3 #include "unistd.h"
+  4 int main(){
+  5     pid_t pid1;
+  6     pid_t pid2;
+  7     pid1=fork();
+  8     pid2=fork();
+  9     printf("parent:%d,pid:%d,forkpid1:%d,forkpid2:%d\n",getppid(),getpid(),pid1,pid2);
+ 10 }
+ 11 
+
+</pre>
+
+<p>结果输出；</p>
+<p>parent:18989,pid:23601,forkpid1:23602,forkpid2:23603</p>
+<p>parent:23601,pid:23603,forkpid1:23602,forkpid2:0</p>
+<p>parent:23601,pid:23602,forkpid1:0,forkpid2:23604</p>
+<p>parent:23602,pid:23604,forkpid1:0,forkpid2:0</p>
+<p>下面我们一步步分析程序的运行过程：</p>
+<p>P23601-&gt;23603</p>
+<p>P23601-&gt;23602-&gt;23604</p>
+<p>主要是以上四个进程，对于P23601进程，第一次fork以后，pid1为它的子进程id:23602,再一次fork,pid2为它的又一个子进程:23603：所以输出第一行；
+parent:18989,pid:23601,forkpid1:23602,forkpid2:23603</p>
+<p>对于第一次fork产生的子进程P23602，是P23601的子进程，所以forkpid1=0,而经过第二次fork以后，它又是P23604的父进程，所以forkpid2=23604;所以输出第三行：
+parent:23601,pid:23602,forkpid1:0,forkpid2:23604</p>
+<p>而对于进程p23603来说，他是P23601第二次fork以后生的子进程，所以，它保持P23601的forkpid1,同时第二次fork它由于没有子进程，所以forkpid2=0,所以输出第二行；
+parent:23601,pid:23603,forkpid1:23602,forkpid2:0</p>
+<p>对于P23604，他是P23602的第二个fork生成的子进程，所以它保持P23602的forkpid1=0,同时由于在第二次fork他充当子进程的角色，所以它的forkpid2=0;</p>
+<p>如果静静的分析一个函数，了解它的执行过程，至少让你不会让你感到那么模糊不清，继续加油！</p>
+</div>
+</article>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'iovision'; // required: replace example with your forum shortname
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</div>
+</div>
+<footer class="footer">
+<div class="footer_powered_by">
+Powered by <a href="http://www.ckecy.com">Bingod</a>
+</div>
+</footer>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-43860851-1', 'auto');
+ga('send', 'pageview');
+</script>
+</div>
+</body>
+</html>
