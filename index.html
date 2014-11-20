@@ -26,6 +26,24 @@
 <li>
 <article>
 <div class="entry-header">
+<h1 class="entry-title"><a href="/post/2014-11-20-java-multiple-thread.html">java并发编程基础</a></h1>
+<div class="entry-meta">
+<span class="sep"><time>2014-11-20 20:39:51 +080</time></a></span>
+</div>
+</div>
+<div class="entry-content">
+<p>对于java多线程的基础代码，我们常常会看到每个对象都自带有wait(),nodify()方法，所以这些方法是在基础类里面的，也就是说每个对象都有。它不属于Thread类里面的。
+wait():如果对象调用了这个函数，会迫使持有该对象的线程把对象的控制权交出去，然后该线程处于等待状态（该线程等待拿到对象的控制权），这种等待是被动的，你需要别人来唤醒</p>
+<p>sleep():如果线程调用了这个函数，是线程本身调用，这是主动睡眠，时间一到，立马醒来</p>
+<p>nodify():如果对象调用了这个函数，就会通知某个正在等待该对象的控制权的线程，使被通知的线程立马醒过来，继续工作，而通知线程继续往下执行。
+
+</div>
+</article>
+<li>
+
+<li>
+<article>
+<div class="entry-header">
 <h1 class="entry-title"><a href="/post/2014-10-29-fork.html">fork函数引起的思考</a></h1>
 <div class="entry-meta">
 <span class="sep"><time>2014-10-29 20:39:51 +080</time></a></span>

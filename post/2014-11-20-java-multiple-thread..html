@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>Bingod</title>
+<link rel="shortcut icon" href="/static/img/favicon.ico"/>
+<link rel="stylesheet" href="/static/style/style.css" type="text/css">
+<script src="/static/js/run_prettify.js"></script>
+</head>
+<body>
+<div id="content">
+<header id="header_index">
+<hgroup>
+<h2 class="site-nav"><a href="/">首页</a></h2>
+<h2 class="site-nav"><a href="/hobby">爱好</a></h2>
+<h2 class="site-nav"><a href="/about">About</a></h2>
+</hgroup>
+</header>
+<div id="main">
+<div class="article_wrapper">
+<article>
+<div class="entry-header">
+<h1 class="entry-title">java并发编程基础</h1>
+<div class="entry-meta">
+<span class="sep"><time>2014-11-20 20:39:51 +080</time></a></span>
+</div>
+</div>
+<div class="entry-content">
+<p>对于java多线程的基础代码，我们常常会看到每个对象都自带有wait(),nodify()方法，所以这些方法是在基础类里面的，也就是说每个对象都有。它不属于Thread类里面的。
+wait():如果对象调用了这个函数，会迫使持有该对象的线程把对象的控制权交出去，然后该线程处于等待状态（该线程等待拿到对象的控制权），这种等待是被动的，你需要别人来唤醒</p>
+<p>sleep():如果线程调用了这个函数，是线程本身调用，这是主动睡眠，时间一到，立马醒来</p>
+<p>nodify():如果对象调用了这个函数，就会通知某个正在等待该对象的控制权的线程，使被通知的线程立马醒过来，继续工作，而通知线程继续往下执行。
+<!-- more --></p>
+<p>下面我们看看常见的生产者和消费者模式。
+<pre class="prettyprint">
+public class WaitNotify {<br />
+    public static void main(String[] args) {<br />
+        Q q = new Q(); 
+        Producer p = new Producer(q);<br />
+        Consumer c = new Consumer(q); 
+        new Thread(p).start();
+        new Thread(c).start();
+    }<br />
+}  </p>
+<p>class Producer implements Runnable {<br />
+    Q q = null;  </p>
+<pre><code>public Producer(Q q) {  
+    this.q = q;  
+}
+
+@Override  
+public void run() {  
+    int i = 0;  
+    while(i&lt;5) {  
+        q.put(i++);  
+    }  
+}
+</code></pre>
+<p>}  </p>
+<p>class Consumer implements Runnable {<br />
+    Q q = null;  </p>
+<pre><code>public Consumer(Q q) {  
+    this.q = q;
+
+}
+
+@Override  
+public void run() {  
+    while(q.get()&lt;5){  
+    }  
+}
+</code></pre>
+<p>}  </p>
+<p>class Q {<br />
+    int n;<br />
+    boolean valueSet = false;  </p>
+<pre><code>public synchronized int get() {  
+    if(!valueSet) {     // if valueSet == false,wait else try to got value  
+        try {  
+            this.wait();  
+        } catch (InterruptedException e) {  
+            e.printStackTrace();  
+        }  
+    }
+
+    System.out.println("Get n : " + n);  
+    valueSet = false;  
+    this.notify();  
+    return n;  
+}
+
+public synchronized void put(int n) {  
+    if(valueSet) {      // if valueSet == true,already have value so wait fetch,else put   
+        try {  
+            System.out.println("wait释放的控制权马上生效：");
+            this.wait();  
+        } catch (InterruptedException e) {  
+            e.printStackTrace();  
+        }  
+    }
+
+    this.n = n;  
+    System.out.println("Put n : " + n);  
+    valueSet = true;  
+    notify(); 
+    try {
+    Thread.sleep(1000);
+    System.out.println("肯定先打印出这条语句，然后再印消费者读到的数据,这说明notify释放的控制权不是马上有效，而是等到synchronized语句执行完");
+    Thread.sleep(1000);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+}
+</code></pre>
+<p>} 
+</pre></p>
+<p>程序输出：
+    Put n : 0
+    肯定先打印出这条语句，然后再印消费者读到的数据,这说明notify释放的控制权不是马上有效，而是等到synchronized语句执行完
+    wait释放的控制权马上生效：
+    Get n : 0
+    Put n : 1
+    肯定先打印出这条语句，然后再印消费者读到的数据,这说明notify释放的控制权不是马上有效，而是等到synchronized语句执行完
+    wait释放的控制权马上生效：
+    Get n : 1</p>
+<p>生产者和消费者进程都轮流占有q对象的控制权，一个对它写，一个对他读，当消费者进程执行对象的get函数，如果valueSet==false,还没设置值，则消费者进程把该对象的控制权交出去，继续等待，生产者从而获得q对象的控制权，它发现valueSet==false,则它设置值，并唤醒因为对象q而等待的消费者进程，同时生产者继续往下执行，如果消费者进程还没来得及读取数据，则生产者先睡吧。还有要注意的就是控制权释放的时候生效的时间的问题，当你要释放控制权，去唤醒他人的时候，这一段时间间隔你必须执行完自己的东西，synchronized修饰的语句某一个时刻时能有一个进程执行，你不执行完，万一下面你还要对该对象操作，而控制权已经交出去那不完蛋了。而wait不同，一旦wait原来的进程就真睡了，什么也不做，所以立即生效可以理解，不会造成冲突。</p>
+</div>
+</article>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'iovision'; // required: replace example with your forum shortname
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</div>
+</div>
+<footer class="footer">
+<div class="footer_powered_by">
+Powered by <a href="http://www.ckecy.com">Bingod</a>
+</div>
+</footer>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-43860851-1', 'auto');
+ga('send', 'pageview');
+</script>
+</div>
+</body>
+</html>
