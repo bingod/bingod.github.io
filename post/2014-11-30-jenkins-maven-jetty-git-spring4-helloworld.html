@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>Bingod</title>
+<link rel="shortcut icon" href="/static/img/favicon.ico"/>
+<link rel="stylesheet" href="/static/style/style.css" type="text/css">
+<script src="/static/js/run_prettify.js"></script>
+</head>
+<body>
+<div id="content">
+<header id="header_index">
+<hgroup>
+<h2 class="site-nav"><a href="/">首页</a></h2>
+<h2 class="site-nav"><a href="/hobby">爱好</a></h2>
+<h2 class="site-nav"><a href="/about">About</a></h2>
+</hgroup>
+</header>
+<div id="main">
+<div class="article_wrapper">
+<article>
+<div class="entry-header">
+<h1 class="entry-title">java项目的自动化构建</h1>
+<div class="entry-meta">
+<span class="sep"><time>2014-11-30 10:39:51 +080</time></a></span>
+</div>
+</div>
+<div class="entry-content">
+<p>Jenkins，之前叫做Hudson，是基于Java开发的一种持续集成工具，用于监控持续重复的工作，包括：持续的软件版本发布/测试项目。</p>
+<p>maven,Maven是基于项目对象模型(POM)，可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具。</p>
+<p>spring4,我们都很熟悉，利用它来开发java web项目。</p>
+<p>git,用于版本控制。
+<!-- more -->  <br />
+经过这两天的实验，发现java项目的自动化构建好处颇多。首先在eclips里建立java web程序（http://blog.csdn.net/smilevt/article/details/8215558），以前要集成spring4的时候，还要手动去下载jar。而现在由于建立的是maven程序，只要在pom.xml里填写程序依赖的很多框架，当启动mvn compile的时候，自动下载所依赖的一些开发框架。
+当建立好程序的时候，我们去根目录启动程序（mvn compie ;mvn package;mvn test;mvn jetty:run;)这样就完成程序的开发流程。可是这还远远不够，设计到多人开发的时候，代码合并，项目总经理每次合并提交后都不断的测试，而微小的改变，对于大型的项目要运行起来就会特别费劲，每次测试所需要的时间也特别长。这时候jenkins出现了，jenkins可以替代我们完成很多工作。当我们把代码提交到github或者gitLab上，我们可以在另一台超级服务器部署jenkins，每一次构建，jenkins自动从github上clone最新版本代码，并自动完成java程序的编译，打包，运行。一个简单的helloworld web源代码地址：（https://github.com/bingod/webspring4）</p>
+</div>
+</article>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'iovision'; // required: replace example with your forum shortname
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</div>
+</div>
+<footer class="footer">
+<div class="footer_powered_by">
+Powered by <a href="http://www.ckecy.com">Bingod</a>
+</div>
+</footer>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-43860851-1', 'auto');
+ga('send', 'pageview');
+</script>
+</div>
+</body>
+</html>
