@@ -21,22 +21,43 @@
 <div class="article_wrapper">
 <article>
 <div class="entry-header">
-<h1 class="entry-title">dubbo框架的学习</h1>
+<h1 class="entry-title">Valid Parenthese</h1>
 <div class="entry-meta">
-<span class="sep"><time>2014-12-8 10:39:51 +080</time></a></span>
+<span class="sep"><time>2014-12-26 10:39:51 +080</time></a></span>
 </div>
 </div>
 <div class="entry-content">
-<p>Dubbo是阿里巴巴公司开源的一个高性能优秀的服务框架，使得应用可通过高性能的 RPC 实现服务的输出和输入功能，可以和Spring框架无缝集成
-<!-- more -->   </p>
-<p>provider暴露服务方称之为“服务提供者”。</p>
-<p>Consumer调用远程服务方称之为“服务消费者”。</p>
-<p>Registry服务注册与发现的中心目录服务称之为“服务注册中心”。</p>
-<p>Monitor统计服务的调用次调和调用时间的日志服务称之为“服务监控中心”。</p>
-<p>该Demo的Registry由zookeeper承担，在本机安装zookeeper,具体的安装方法：http://jingyan.baidu.com/article/456c463b60bd380a5931446f.html</p>
-<p>工程由maven创建：
-服务方提供服务，并把服务注册到注册中心，消费着去注册中心订阅服务，注册中心把服务方的地址通知给消费者，消费者根据信息可以调用服务方的服务，原理就是这么简单。
-Demo:https://github.com/bingod/dubbo-demo</p>
+<p>quetions:</p>
+<p>You are given two linked lists representing two non-negative numbers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
+<p>Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</p>
+<p>Output: 7 -&gt; 0 -&gt; 8</p>
+<!-- more -->
+
+<p>当我们拿到这条题目的时候我们都有想法，无非就是借助一个栈来操作，当进来左括号进栈，右括号时，弹出，但是正常的思维我们都要作出很多的判断语句，当要增加别的括号的时候，造成代码非常混乱，我们可以借助一个字典，写出可维护代码！！！</p>
+<pre class="prettyprint">
+
+public class Solution {
+    private Map<Character, Character> map = new HashMap<Character, Character>(){
+    {
+        put('(', ')');
+        put('[', ']');
+        put('{', '}');
+    }};
+
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<Character>();
+        for (Character c : s.toCharArray()) {
+            if (map.containsKey(c)) {
+                stack.push(c);
+            } else if (stack.isEmpty() || map.get(stack.pop()) != c) {
+                return false;
+            }
+        }
+        return stack.isEmpty();
+    }
+}
+
+</pre>
 </div>
 </article>
 <div id="disqus_thread"></div>
