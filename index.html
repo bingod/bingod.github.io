@@ -404,7 +404,15 @@ wait():如果对象调用了这个函数，会迫使持有该对象的线程把�
 
 <!DOCTYPE HTML>
 <html>
-<body>
+<head>
+<script type="text/javascript">
+function myfunction(){
+my=document.getElementById("audio");
+my.volume= 0.45;
+}
+</script>
+</head>
+<body onload="myfunction()">
 <audio autoplay preload="auto" controls loop id="audio">
 <source src="/static/music/jcdd.mp3" type="audio/mpeg">
 <embed height="10" width="10" src="/static/music/jcdd.mp3" />
