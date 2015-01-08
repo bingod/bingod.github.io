@@ -401,18 +401,13 @@ wait():如果对象调用了这个函数，会迫使持有该对象的线程把�
 <a class="prev">上一页</a><span class="num"><span class="current_page">1</span><span style="padding:0 3px;">/</span><span class="total"></span></span><a class="next">下一页</a>
 </span>
 </div>
+<div id ="music">
 
 <!DOCTYPE HTML>
 <html>
 <head>
-<script type="text/javascript">
-function myfunction(){
-my=document.getElementById("audio");
-my.volume= 0.45;
-}
-</script>
 </head>
-<body onload="myfunction()">
+<body>
 <audio autoplay preload="auto" controls loop id="audio">
 <source src="/static/music/jcdd.mp3" type="audio/mpeg">
 <embed height="10" width="10" src="/static/music/jcdd.mp3" />
@@ -420,6 +415,7 @@ my.volume= 0.45;
 </body>
 </html>
 
+</div>
 <html>
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
@@ -428,6 +424,7 @@ my.volume= 0.45;
 <!--
 function startTime()
 {
+myfunction();
 var today=new Date()
 var years=today.getFullYear();
 var months=today.getMonth();
@@ -460,6 +457,10 @@ if (i<10)
 return i
 }
 -->
+function myfunction(){
+my=document.getElementById("audio");
+my.volume= 0.25;
+}
 </script>
 </head>
 <body onLoad="startTime()">

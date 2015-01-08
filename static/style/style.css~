@@ -24,11 +24,18 @@ a {
 	margin-left: 220px;
 }
 
+
+
 #header_index {
 	position: fixed;
 	width: 180px;
 	margin-right: 40px;
 	margin-top: 30px;
+}
+
+#music {
+    position: relative;
+    left: 1000px;
 }
 
 .site-nav {
