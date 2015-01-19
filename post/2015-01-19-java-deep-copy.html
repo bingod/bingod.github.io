@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>IoVision</title>
+<link rel="shortcut icon" href="/static/img/favicon.ico"/>
+<link rel="stylesheet" href="/static/style/style.css" type="text/css">
+<script src="/static/js/run_prettify.js"></script>
+</head>
+<body>
+<div id="content">
+<header id="header_index">
+<hgroup>
+<h2 class="site-nav"><a href="/">首页</a></h2>
+<h2 class="site-nav"><a href="/hobby">爱好</a></h2>
+<h2 class="site-nav"><a href="/about">About</a></h2>
+</hgroup>
+</header>
+<div id="main">
+<div class="article_wrapper">
+<article>
+<div class="entry-header">
+<h1 class="entry-title">Deep copy</h1>
+<div class="entry-meta">
+<span class="sep"><time>2014-01-19 16:51 +080</time></a></span>
+</div>
+</div>
+<div class="entry-content">
+<h2>深拷贝和浅拷贝</h2>
+<p>浅拷贝是指拷贝对象时仅仅拷贝对象本身（包括对象中的基本变量），而不拷贝对象包含的引用指向的对象。深拷贝不仅拷贝对象本身，而且拷贝对象包含的引用指向的所有对象。举例来说更加清楚：对象A1中包含对B1的引用，B1中包含对C1的引用。浅拷贝A1得到A2，A2 中依然包含对B1的引用，B1中依然包含对C1的引用。深拷贝则是对浅拷贝的递归，深拷贝A1得到A2，A2中包含对B2（B1的copy）的引用，B2 中包含对C2（C1的copy）的引用。</p>
+<!-- more -->
+
+<p>String特殊性：因为String是在内存中不可以被改变的对象，每次使用+都会新分配一块内存，不在原来上修改，原来的没有指向它的引用，会被回收。所以克隆相当于1个String内存空间有两个引用，当修改其中的一个值的时候，会新分配一块内存用来保存新的值，这个引用指向新的内存空间，原来的String因为还存在指向他的引用，所以不会被回收，这样，虽然是复制的引用，但是修改值的时候，并没有改变被复制对象的值。</p>
+<pre class = "prettyprint">
+class Stu implements Cloneable{
+    public String name;
+    public int[] num;
+    public int score;
+    public Stu(String name, int[] num, int score) {
+        this.name = name;
+        this.num= num;
+        this.score = score;
+    }
+    public String toString() {
+        return name + ":" + num[0] + ":" + score;
+    }
+    protected Stu clone() {
+        Stu clone = null;
+        try{
+            clone = (Stu) super.clone();//只是深入copy name 和 score
+        }catch(CloneNotSupportedException e){
+            throw new RuntimeException(e); // won't happen
+        }
+        /*数组是引用数据类型，如果不添加下面的代码只复制引用*/
+        int n = this.num.length;
+        clone.num = new int[n];
+        for (int i = 0; i < n; i++)
+            clone.num[i] = this.num[i];
+        return clone;
+    }
+}
+public class test {
+    public static void main(String[] args) {
+        Map<String, Stu> a = new HashMap<String, Stu>();
+        Stu stu = new Stu("ck", new int[] {1, 2, 3},89);
+        a.put("2", stu);
+        Map<String, Stu> b = new HashMap<String, Stu>();
+        Set<Map.Entry<String, Stu>> entrySet = a.entrySet();
+        for (Map.Entry<String, Stu> entry : entrySet) {
+            b.put(entry.getKey(), entry.getValue().clone());
+        }
+        a.get("2").name = "cy";
+        a.get("2").num[0] = 3;
+        a.clear();//clear只是删除a对象，由于b是另一个new出来的对象，所以不清除b
+        System.out.println(b.get("2"));//输出：ck:1:89
+        List<Stu> list1 = new LinkedList<Stu>();
+        list1.add(stu);
+        List<Stu> list2 = new LinkedList<Stu>(list1);//list1,list2里面的数据都不是复制，都指向同一个对象
+        list1.get(0).num[0] = 9;
+        list1.get(0).name = "dfa";
+        list1.clear();
+        System.out.println(list2.get(0));//输出：dfa:9:89
+    }
+}
+
+</pre>
+</div>
+</article>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'iovision'; // required: replace example with your forum shortname
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</div>
+</div>
+<footer class="footer">
+<div class="footer_powered_by">
+Powered by <a href="http://www.ckecy.com">Bingod</a>
+</div>
+</footer>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-43860851-1', 'auto');
+ga('send', 'pageview');
+</script>
+</div>
+</body>
+</html>

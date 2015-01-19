@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>IoVision</title>
+<link rel="shortcut icon" href="/static/img/favicon.ico"/>
+<link rel="stylesheet" href="/static/style/style.css" type="text/css">
+<script src="/static/js/run_prettify.js"></script>
+</head>
+<body>
+<div id="content">
+<header id="header_index">
+<hgroup>
+<h2 class="site-nav"><a href="/">首页</a></h2>
+<h2 class="site-nav"><a href="/hobby">爱好</a></h2>
+<h2 class="site-nav"><a href="/about">About</a></h2>
+</hgroup>
+</header>
+<div id="main">
+<div class="article_wrapper">
+<article>
+<div class="entry-header">
+<h1 class="entry-title">不变量在算法中的运用</h1>
+<div class="entry-meta">
+<span class="sep"><time>2014-10-19 16:51 +080</time></a></span>
+</div>
+</div>
+<div class="entry-content">
+<h2>不变量：</h2>
+<p>之所以称为不变量，是因为他懒得动，还是隐藏在它内部的东西，其实这是对象本身所具备的东西，是它区别别的对象所特有的东西，当我们分析问题，找规律的时候，也是在寻找那些不变的东西，那种随机改变的东西，是我们所不能应付和理解的，因为我们本身也是对象，我们也懒得动，其实世界的本质都是一致的，所以我们可以去理解。下面我让我们看看不变量的几处用法。</p>
+<!-- more -->
+
+<p>1.在国际象棋中，有没有一种走法，从右下角出发，到左上角，使得骑士可以遍历整张棋盘且每一格都一次？ 当你面对这个傻瓜问题的时候，你该如何去理解，如果你不了解国际象棋也没关系，其实我也不懂，但是你可以百度哦！我们知道骑士的走法是L（水平两格加上垂直一格，或者相反），我们可以给棋盘染色，任何相相邻的格子都是不一样的颜色，这里说的相邻是上下左右，我们只有两种颜色就够了。在染色的棋盘上我们看看骑士的走法，骑士出发点和落脚点的颜色永远都是相反的。</p>
+<p>我们已经知道这些不变的东西--骑士的出发点和落脚点颜色是相反的（我说的是一步），要遍历一次，必须走63步，而63步以后是相反的颜色，可是你看看棋盘的颜色，左上角和右下角是相同的颜色，所以明显是不可能的吧！</p>
+<p>延伸出来的问题：</p>
+<p>（1）按骑士的走法，使用最少的颜色给棋盘染色，使得在相同颜色格子中的两枚棋子不会威胁对方（这里只是相对两个骑士来说）？</p>
+<p>（2）其实你不觉得从任意点出发是不是也不能满足呢？</p>
+<p>2.还记得俄罗斯方块的游戏吗？你可不可以用15个T型骨牌，和一个四方型的骨牌，平铺8*8的国际象棋？</p>
+<p>我们还是寻找不变量，还是给国际象棋染两种黑白两种间隔的颜色，而T字形覆盖的奇数个黑格子，奇数个白格子，而四方型的骨牌都是覆盖偶数个黑格子和白格子，所以15个T字形的股牌覆盖的永远都是奇数个黑格子和奇数个白格子，但是国际象棋有偶数个黑格子，你说还能平铺吗？答案是否定的；</p>
+<p>万变不离其宗，如果我们找到对象本身所具有不变的东西，它往往是解决问题的突破口，所以睁大你的眼睛，去寻找她吧！！！</p>
+</div>
+</article>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'iovision'; // required: replace example with your forum shortname
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function() {
+var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+</div>
+</div>
+<footer class="footer">
+<div class="footer_powered_by">
+Powered by <a href="http://www.ckecy.com">Bingod</a>
+</div>
+</footer>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-43860851-1', 'auto');
+ga('send', 'pageview');
+</script>
+</div>
+</body>
+</html>
