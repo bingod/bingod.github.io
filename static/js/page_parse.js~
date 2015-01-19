@@ -1,9 +1,17 @@
  $(document).ready(function(){
+<<<<<<< HEAD
+                $("ul li:gt(2)").hide();//初始化，前面4条数据显示，其他的数据隐藏。
+                var total_q=$("ul li").index()+1;//总数据
+                var current_page=3;//每页显示的数据
+                var current_num=1;//当前页数
+                var total_page= Math.round(total_q/current_page);//总页数  
+=======
                 $("ul li:gt(3)").hide();//初始化，前面4条数据显示，其他的数据隐藏。
                 var total_q=$("ul li").index()+1;//总数据
                 var current_page=3;//每页显示的数据
                 var current_num=1;//当前页数
                 var total_page= Math.round(total_q/current_page)+1;//总页数  
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
                 var next=$(".next");//下一页
                 var prev=$(".prev");//上一页
                 $(".total").text(total_page);//显示总页数

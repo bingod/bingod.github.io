@@ -3,7 +3,11 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<<<<<<< HEAD
+<title>IoVision</title>
+=======
 <title>Bingod</title>
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 <link rel="shortcut icon" href="/static/img/favicon.ico"/>
 <link rel="stylesheet" href="/static/style/style.css" type="text/css">
 <script src="/static/js/run_prettify.js"></script>
@@ -23,29 +27,52 @@
 <div class="entry-header">
 <h1 class="entry-title">Jump Game II</h1>
 <div class="entry-meta">
+<<<<<<< HEAD
+<span class="sep"><time>2014-01-11 16:51 +080</time></a></span>
+</div>
+</div>
+<div class="entry-content">
+<h2>quetions:</h2>
+=======
 <span class="sep"><time>2015-01-11 15:39:51 +080</time></a></span>
 </div>
 </div>
 <div class="entry-content">
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 <p>quetions:</p>
 <p>Given an array of non-negative integers, you are initially positioned at the first index of the array.</p>
 <p>Each element in the array represents your maximum jump length at that position.</p>
 <p>Your goal is to reach the last index in the minimum number of jumps.</p>
 <p>For example:</p>
 <p>Given array A = [2,3,1,1,4]</p>
+<<<<<<< HEAD
+<p>The minimum number of jumps to reach the last index is 2. (Jump 1 step from index 0 to 1, then 3 steps to the last index.)</p>
+<!-- more -->
+
+<p>贪心算法（又称贪婪算法）是指，在对问题求解时，总是做出在当前看来是最好的选择。也就是说，不从整体最优上加以考虑，他所做出的仅是在某种意义上的局部最优解。贪心算法不是对所有问题都能得到整体最优解，但对范围相当广泛的许多问题他能产生整体最优解或者是整体最优解的近似解。该题目就是从头开始，跳跃一步所能到最远的距离，跳两步能走的最远距离……以此类推</p>
+<p>递归算法：</p>
+<pre class = "prettyprint">
+=======
 <p>The minimum number of jumps to reach the last index is 2. (Jump 1 step from index 0 to 1, then 3 steps to the last index.) </p>
 <!-- more -->
 
 <p>贪心算法（又称贪婪算法）是指，在对问题求解时，总是做出在当前看来是最好的选择。也就是说，不从整体最优上加以考虑，他所做出的仅是在某种意义上的局部最优解。贪心算法不是对所有问题都能得到整体最优解，但对范围相当广泛的许多问题他能产生整体最优解或者是整体最优解的近似解。该题目就是从头开始，跳跃一步所能到最远的距离，跳两步能走的最远距离……以此类推</p>
 <p>递归算法：
 <pre class="prettyprint">
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 public class Solution {
     public int jump(int[] A) {
         int maxJump = 0, i = 0;
         int step = 0;
+<<<<<<< HEAD
+        while (maxJump < A.length - 1) {//当maxJump能够着末尾就不用跳了
+            int preMax = -1;
+            while (i <= maxJump) {
+=======
         while (maxJump &lt; A.length - 1) {//当maxJump能够着末尾就不用跳了
             int preMax = -1;
             while (i &lt;= maxJump) {
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
                 preMax = Math.max(preMax, i + A[i]);
                 i++;
             }
@@ -55,7 +82,11 @@ public class Solution {
         return step;
     }
 }
+<<<<<<< HEAD
+</pre>
+=======
 </pre></p>
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 </div>
 </article>
 <div id="disqus_thread"></div>

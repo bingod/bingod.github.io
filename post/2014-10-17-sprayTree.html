@@ -3,7 +3,11 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<<<<<<< HEAD
+<title>IoVision</title>
+=======
 <title>Bingod</title>
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 <link rel="shortcut icon" href="/static/img/favicon.ico"/>
 <link rel="stylesheet" href="/static/style/style.css" type="text/css">
 <script src="/static/js/run_prettify.js"></script>
@@ -23,6 +27,24 @@
 <div class="entry-header">
 <h1 class="entry-title">伸展树</h1>
 <div class="entry-meta">
+<<<<<<< HEAD
+<span class="sep"><time>2014-10-17 16:51 +080</time></a></span>
+</div>
+</div>
+<div class="entry-content">
+<h2>自顶向下的伸展树：</h2>
+<p>在自底向上的伸展树中，我们需要求一个节点的父节点和祖父节点，因此这种伸展树难以实现。因此，我们可以构建自顶向下的伸展树。 当我们沿着树向下搜索某个节点X的时候，我们将搜索路径上的节点及其子树移走。我们构建两棵临时的树──左树和右树。没有被移走的节点构成的树称作中树。在伸展操作的过程中：</p>
+<p>1、当前节点X是中树的根。</p>
+<p>2、左树L保存小于X的节点。</p>
+<p>3、右树R保存大于X的节点。</p>
+<p>开始时候，X是树T的根，左右树L和R都是空的。和前面的自下而上相同，自上而下也分三种情况： 将中树的左右子树分别连接到左树的右子树和右树的左子树上。将左右树作为X的左右子树。重新最成了一所查找的节点为根的树。 下面给出伪代码：</p>
+<p>右连接：将当前根及其右子树连接到右树上。左子结点作为新根。</p>
+<p>左连接：将当前根及其左子树连接到左树上。右子结点作为新根。</p>
+<!-- more -->
+
+<pre class="prettyprint">
+Function Top-Down-Splay
+=======
 <span class="sep"><time>2014-10-17 22:39:51 +080</time></a></span>
 </div>
 </div>
@@ -41,11 +63,17 @@
 <p>左连接：将当前根及其左子树连接到左树上。右子结点作为新根。</p>
 <p><pre class="prettyprint">
          Function Top-Down-Splay
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
            Do
               If X 小于 T Then
                    If X 小于 T 的左孩子 Then
                      T的左子节点绕T右旋
+<<<<<<< HEAD
+                   EndIf
+
+=======
                    EndIf  <br />
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
                 右连接
               Else If X大于 T Then
                    If X 大于 T 的右孩子 Then
@@ -56,10 +84,18 @@
            While  !(找到 X或遇到空节点)
            组合左中右树
          EndFuntion
+<<<<<<< HEAD
+</pre>
+
+<pre class="prettyprint">
+
+8 int size;  /* number of nodes in the tree */
+=======
 </pre></p>
 <pre class="prettyprint">
 
   8 int size;  /* number of nodes in the tree */
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
   9            /* Not actually needed for any of the operations */
  10 typedef struct tree_node Tree;
  11  struct tree_node
@@ -67,7 +103,11 @@
  13     Tree * left, * right;
  14     int item;
  15 };
+<<<<<<< HEAD
+ 16
+=======
  16 
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
  17 Tree * splay (int i, Tree * t)
  18 {
  19  /* Simple top down splay, not requiring i to be in the tree t.  */
@@ -99,9 +139,15 @@
  45             r->left = t;                               /* link right */
  46             r = t;
  47             t = t->left;
+<<<<<<< HEAD
+ 48         }
+ 49         else if (i > t->item)
+ 50         {
+=======
  48         }     
  49         else if (i > t->item)
  50         {    
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
  51             if (t->right == NULL)
  52             {
  53                 break;
@@ -120,8 +166,13 @@
  66             l->right = t;                              /* link left */
  67             l = t;
  68             t = t->right;
+<<<<<<< HEAD
+ 69         }
+ 70         else
+=======
  69         }     
  70         else    
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
  71         {
  72             break;
  73         }

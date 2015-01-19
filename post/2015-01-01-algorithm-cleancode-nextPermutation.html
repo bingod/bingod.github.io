@@ -3,7 +3,11 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<<<<<<< HEAD
+<title>IoVision</title>
+=======
 <title>Bingod</title>
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 <link rel="shortcut icon" href="/static/img/favicon.ico"/>
 <link rel="stylesheet" href="/static/style/style.css" type="text/css">
 <script src="/static/js/run_prettify.js"></script>
@@ -23,11 +27,19 @@
 <div class="entry-header">
 <h1 class="entry-title">Next Permutation</h1>
 <div class="entry-meta">
+<<<<<<< HEAD
+<span class="sep"><time>2014-01-02 16:51 +080</time></a></span>
+</div>
+</div>
+<div class="entry-content">
+<h2>quetions:</h2>
+=======
 <span class="sep"><time>2015-01-02 19:39:51 +080</time></a></span>
 </div>
 </div>
 <div class="entry-content">
 <p>quetions:</p>
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 <p>Implement next permutation, which rearranges numbers into the lexicographically next greater permutation of numbers.</p>
 <p>If such arrangement is not possible, it must rearrange it as the lowest possible order (ie, sorted in ascending order).</p>
 <p>The replacement must be in-place, do not allocate extra memory.</p>
@@ -36,6 +48,13 @@
 
 <p>于是可以有下面计算下一个排列的算法：</p>
 <p>设P是1～n的一个全排列:p=p1p2......pn=p1p2......pj-1pjpj+1......pk-1pkpk+1......pn</p>
+<<<<<<< HEAD
+<p>1）从排列的右端开始，找出第一个比右边数字小的数字的序号j（j从左端开始计算），即 j=max{i|pi&lt;pi+1}</p>
+<p>2）在pj的右边的数字中，找出所有比pj大的数中最小的数字pk，即 k=max{i|pi&gt;pj}（右边的数从右至左是递增的，因此k是所有大于pj的数字中序号最大者）</p>
+<p>3）对换pi，pk</p>
+<p>4）再将pj+1......pk-1pkpk+1......pn倒转得到排列p'=p1p2.....pj-1pjpn.....pk+1pkpk-1.....pj+1，这就是排列p的下一个排列。</p>
+<pre class = "prettyprint">
+=======
 <ul>
 <li>
 <p>1）从排列的右端开始，找出第一个比右边数字小的数字的序号j（j从左端开始计算），即 j=max{i|pi&lt;pi+1}</p>
@@ -52,6 +71,7 @@
 </ul>
 <pre class="prettyprint">
 
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 public class Solution {
     private void reverse(int[] num, int begin, int end) {
         while (begin < end) {
@@ -84,7 +104,10 @@ public class Solution {
         reverse(num, firstLSR + 1, num.length - 1);
     }
 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 </pre>
 </div>
 </article>

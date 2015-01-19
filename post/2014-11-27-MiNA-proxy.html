@@ -3,7 +3,11 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<<<<<<< HEAD
+<title>IoVision</title>
+=======
 <title>Bingod</title>
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 <link rel="shortcut icon" href="/static/img/favicon.ico"/>
 <link rel="stylesheet" href="/static/style/style.css" type="text/css">
 <script src="/static/js/run_prettify.js"></script>
@@ -23,15 +27,25 @@
 <div class="entry-header">
 <h1 class="entry-title">mina写一个简易的代理服务器</h1>
 <div class="entry-meta">
+<<<<<<< HEAD
+<span class="sep"><time>2014-11-20 16:51 +080</time></a></span>
+=======
 <span class="sep"><time>2014-11-20 22:39:51 +080</time></a></span>
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 </div>
 </div>
 <div class="entry-content">
 <p>在分析MINA框架的过程中，分析一个代理服务器的代码，为了使自己后面不忘记，也写下了几行注释，希望自己能够爱上代码吧，嘿嘿！
+<<<<<<< HEAD
+<!-- more -->
+可以用上一篇文章写的代码充当服务器的角色，并修改代码里面的端口</p>
+<pre class="prettyprint">
+=======
 <!-- more -->  <br />
 可以用上一篇文章写的代码充当服务器的角色，并修改代码里面的端口</p>
 <pre class="prettyprint">
 
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 public abstract class AbstractProxyIoHandler extends IoHandlerAdapter {
     private static final Charset CHARSET = Charset.forName("UTF-8");
     public static final String OTHER_IO_SESSION = AbstractProxyIoHandler.class.getName()+".OtherIoSession";
@@ -73,7 +87,10 @@ public abstract class AbstractProxyIoHandler extends IoHandlerAdapter {
 </pre>
 
 <pre class="prettyprint">
+<<<<<<< HEAD
+=======
 
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 public class ClientToProxyIoHandler extends AbstractProxyIoHandler {
 
     private final ServerToProxyIoHandler connectorHandler = new ServerToProxyIoHandler();
@@ -92,7 +109,11 @@ public class ClientToProxyIoHandler extends AbstractProxyIoHandler {
     @Override
     public void sessionOpened(final IoSession session) throws Exception {
 
+<<<<<<< HEAD
+        connector.connect(remoteAddress).addListener(new IoFutureListener() {
+=======
         connector.connect(remoteAddress).addListener(new IoFutureListener<ConnectFuture>() {
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
             public void operationComplete(ConnectFuture future) {
                 try {
                     future.getSession().setAttribute(OTHER_IO_SESSION, session);
@@ -118,13 +139,19 @@ public class ClientToProxyIoHandler extends AbstractProxyIoHandler {
 </pre>
 
 <pre class="prettyprint">
+<<<<<<< HEAD
+=======
 
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 public class ServerToProxyIoHandler extends AbstractProxyIoHandler {
 }
 </pre>
 
 <pre class="prettyprint">
+<<<<<<< HEAD
+=======
 
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 public class Main {
 
     public static void main(String[] args) throws Exception {
@@ -144,12 +171,19 @@ public class Main {
         // Start proxy.
         acceptor.setHandler(handler);
 
+<<<<<<< HEAD
+        acceptor.setReuseAddress(true);
+=======
         acceptor.setReuseAddress(true); 
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 
         acceptor.bind(new InetSocketAddress(8474));
 
     }
+<<<<<<< HEAD
+=======
 
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 }
 </pre>
 </div>

@@ -3,7 +3,11 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<<<<<<< HEAD
+<title>IoVision</title>
+=======
 <title>Bingod</title>
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 <link rel="shortcut icon" href="/static/img/favicon.ico"/>
 <link rel="stylesheet" href="/static/style/style.css" type="text/css">
 <script src="/static/js/run_prettify.js"></script>
@@ -23,17 +27,35 @@
 <div class="entry-header">
 <h1 class="entry-title">Insert Interval</h1>
 <div class="entry-meta">
+<<<<<<< HEAD
+<span class="sep"><time>2014-01-13 16:51 +080</time></a></span>
+</div>
+</div>
+<div class="entry-content">
+<h2>quetions:</h2>
+=======
 <span class="sep"><time>2015-01-13 10:39:51 +080</time></a></span>
 </div>
 </div>
 <div class="entry-content">
 <p>quetions:</p>
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 <p>Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).</p>
 <p>You may assume that the intervals were initially sorted according to their start times.</p>
 <p>Example 1:</p>
 <p>Given intervals [1,3],[6,9], insert and merge [2,5] in as [1,5],[6,9].</p>
 <p>Example 2:</p>
 <p>Given [1,2],[3,5],[6,7],[8,10],[12,16], insert and merge [4,9] in as [1,2],[3,10],[12,16].</p>
+<<<<<<< HEAD
+<p>This is because the new interval [4,9] overlaps with [3,5],[6,7],[8,10].</p>
+<!-- more -->
+
+<p>题目并没有难度，可是就是比较难以处理，都有思想，就是如何减少比较次数，如果能够做到clean code确实有难度</p>
+<pre class = "prettyprint">
+public class Solution {
+    public List insert(List intervals, Interval newInterval) {
+        List list = new LinkedList();
+=======
 <p>This is because the new interval [4,9] overlaps with [3,5],[6,7],[8,10]. </p>
 <!-- more -->
 
@@ -42,6 +64,7 @@
 public class Solution {
     public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
         List<Interval> list = new LinkedList<Interval>();
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
         for (int i = 0; i < intervals.size(); i++) {
             if (newInterval.start > intervals.get(i).end) {
                 list.add(intervals.get(i));
@@ -57,7 +80,10 @@ public class Solution {
         return list;
     }
 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 </pre>
 </div>
 </article>

@@ -3,7 +3,11 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<<<<<<< HEAD
+<title>IoVision</title>
+=======
 <title>Bingod</title>
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 <link rel="shortcut icon" href="/static/img/favicon.ico"/>
 <link rel="stylesheet" href="/static/style/style.css" type="text/css">
 <script src="/static/js/run_prettify.js"></script>
@@ -23,20 +27,34 @@
 <div class="entry-header">
 <h1 class="entry-title">Valid Parenthese</h1>
 <div class="entry-meta">
+<<<<<<< HEAD
+<span class="sep"><time>2014-12-26 16:51 +080</time></a></span>
+</div>
+</div>
+<div class="entry-content">
+<h2>quetions:</h2>
+=======
 <span class="sep"><time>2014-12-26 10:39:51 +080</time></a></span>
 </div>
 </div>
 <div class="entry-content">
 <p>quetions:</p>
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 <p>Given a string containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.</p>
 <p>The brackets must close in the correct order, "()" and "()[]{}" are all valid but "(]" and "([)]" are not.</p>
 <!-- more -->
 
 <p>当我们拿到这条题目的时候我们都有想法，无非就是借助一个栈来操作，当进来左括号进栈，右括号时，弹出，但是正常的思维我们都要作出很多的判断语句，当要增加别的括号的时候，造成代码非常混乱，我们可以借助一个字典，写出可维护代码！！！</p>
+<<<<<<< HEAD
+<pre class = "prettyprint">
+public class Solution {
+    private Map map = new HashMap() {
+=======
 <pre class="prettyprint">
 
 public class Solution {
     private Map<Character, Character> map = new HashMap<Character, Character>(){
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
     {
         put('(', ')');
         put('[', ']');
@@ -44,7 +62,11 @@ public class Solution {
     }};
 
     public boolean isValid(String s) {
+<<<<<<< HEAD
+        Stack stack = new Stack();
+=======
         Stack<Character> stack = new Stack<Character>();
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
         for (Character c : s.toCharArray()) {
             if (map.containsKey(c)) {
                 stack.push(c);
@@ -55,7 +77,10 @@ public class Solution {
         return stack.isEmpty();
     }
 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 </pre>
 </div>
 </article>

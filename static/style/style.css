@@ -21,6 +21,14 @@ a {
 }
 
 #main {
+<<<<<<< HEAD
+	margin-left: 170px;
+}
+
+#header_index {
+	position: fixed;
+	width: 155px;
+=======
 	margin-left: 220px;
 }
 
@@ -29,15 +37,24 @@ a {
 #header_index {
 	position: fixed;
 	width: 180px;
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 	margin-right: 40px;
 	margin-top: 30px;
 }
 
 #music {
+<<<<<<< HEAD
+    position: absolute;
+    left: 1046px;
+}
+
+
+=======
     position: relative;
     left: 1000px;
 }
 
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 .site-nav {
 	margin: 0px 0px 15px;
 	font-size: 14px;
@@ -109,12 +126,20 @@ article {
 
 .page_btn{padding-top:20px;}
 .page_btn a{cursor:pointer;border:solid 1px #ccc;font-size:14px;}
+<<<<<<< HEAD
+.page_box{ float:right;position:relative;right:45%;
+=======
 .page_box{ float:right;position:relative;right:37%;
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 }
 
 
 .footer {
+<<<<<<< HEAD
+	margin-left: 10px;
+=======
 	margin-left: 220px;
+>>>>>>> c497b963d503198c6214ab6a9394f563def4adba
 	clear: both;
 }
 
